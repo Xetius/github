@@ -1,0 +1,17 @@
+github CLI is a utility for managing your GitHub organisation.
+
+Once configured, you are able to manage various aspects of your GitHub organisation.  
+You can do the following things:
+
+  - List repositories
+  - Create a new repository from a template
+  - Apply configuration to all repositories in your organisation (handy for mass changes)
+
+Usage:
+
+Flags:
+      --config string   config file (default is $HOME/.github.yaml)
+  -h, --help            help for github
+
+Additional help topics:
+  github repo Perform a function on a repository
