@@ -29,7 +29,7 @@ import (
 
 var update = flag.Bool("update", false, "update golden files")
 
-var binaryName = "build/0.0.1/darwin_amd64/github"
+var binaryName = "github"
 
 func fixturePath(t *testing.T, fixture string) string {
 	_, filename, _, ok := runtime.Caller(0)
@@ -57,7 +57,7 @@ func loadFixture(t *testing.T, fixture string) string {
 }
 
 func TestMain(m *testing.M) {
-	makeCmd := exec.Command("make", "build")
+	makeCmd := exec.Command("go", "build")
 	err := makeCmd.Run()
 	if err != nil {
 		fmt.Printf("could not make binary for %s: %v", binaryName, err)
