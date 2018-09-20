@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/xetius/github/cmd"
+import "github.com/Xetius/github/cmd"
 
 func main() {
 	cmd.Execute()
