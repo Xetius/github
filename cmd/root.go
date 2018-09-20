@@ -16,9 +16,10 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -48,7 +49,15 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.github.yaml)")
+	rootCmd.PersistentFlags().StringP("organisation", "o", "", "name of your organisation")
+	rootCmd.PersistentFlags().StringP("authtoken", "a", "", "authorisation token to access organisation")
+	rootCmd.PersistentFlags().StringP("endpoint", "e", "", "URL of the API endpoint for your GitHub instance")
+	rootCmd.PersistentFlags().StringP("useragent", "ua", "GitHub CLI Agent", "User-Agent to use for requests to your GitHub instance")
+
+	err := viper.BindPFlag("organisation", rootCmd.PersistentFlags().Lookup("organisation")); if err != nil { log.Fatal(err) }
+	err = viper.BindPFlag("authtoken", rootCmd.PersistentFlags().Lookup("authtoken")); if err != nil { log.Fatal(err) }
+	err = viper.BindPFlag("endpoint", rootCmd.PersistentFlags().Lookup("endpoint")); if err != nil { log.Fatal(err) }
+	err = viper.BindPFlag("useragent", rootCmd.PersistentFlags().Lookup("useragent")); if err != nil { log.Fatal(err) }
 }
 
 func initConfig() {
@@ -60,6 +69,8 @@ func initConfig() {
 			fmt.Println(err)
 			os.Exit(1)
 		}
+
+		viper.SetEnvPrefix("GHCLI")
 
 		viper.AddConfigPath(home)
 		viper.SetConfigName(".github")
