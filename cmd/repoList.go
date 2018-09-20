@@ -18,6 +18,7 @@ import (
 	"github.com/octokit/go-octokit/octokit"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"log"
 )
 
 var repoListCmd = &cobra.Command{
@@ -26,7 +27,15 @@ var repoListCmd = &cobra.Command{
 	Long: ``,
 
 	Run: func(cmd *cobra.Command, args []string) {
-		octokit.NewClientWith(viper.GetString("endpoint"), viper.GetString("useragent"), octokit.TokenAuth{AccessToken: viper.GetString("authtoken")}, nil)
+		client := octokit.NewClientWith(viper.GetString("endpoint"), viper.GetString("useragent"), octokit.TokenAuth{AccessToken: viper.GetString("authtoken")}, nil)
+		repos, result := client.Repositories().All(&octokit.OrgRepositoriesURL, octokit.M{"org": viper.GetString("organisation")})
+		if result.HasError() {
+			log.Fatal(result.Error())
+		}
+
+		for _, repo := range repos {
+			println(repo.Name)
+		}
 	},
 }
 
