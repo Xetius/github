@@ -8,10 +8,17 @@ You can do the following things:
   - Apply configuration to all repositories in your organisation (handy for mass changes)
 
 Usage:
+  github [command]
+
+Available Commands:
+  help        Help about any command
+  repo        Perform a function on a repository
 
 Flags:
-      --config string   config file (default is $HOME/.github.yaml)
-  -h, --help            help for github
+  -a, --authtoken string      authorisation token to access organisation
+  -e, --endpoint string       URL of the API endpoint for your GitHub instance
+  -h, --help                  help for github
+  -o, --organisation string   name of your organisation
+      --useragent string      User-Agent to use for requests to your GitHub instance (default "GitHub CLI Agent")
 
-Additional help topics:
-  github repo Perform a function on a repository
+Use "github [command] --help" for more information about a command.

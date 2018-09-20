@@ -1,2 +1,18 @@
 Perform a function on a repository
 
+Usage:
+  github repo [command]
+
+Available Commands:
+  list        lists all of the repositories for your organisation
+
+Flags:
+  -h, --help   help for repo
+
+Global Flags:
+  -a, --authtoken string      authorisation token to access organisation
+  -e, --endpoint string       URL of the API endpoint for your GitHub instance
+  -o, --organisation string   name of your organisation
+      --useragent string      User-Agent to use for requests to your GitHub instance (default "GitHub CLI Agent")
+
+Use "github repo [command] --help" for more information about a command.
