@@ -52,7 +52,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("organisation", "o", "", "name of your organisation")
 	rootCmd.PersistentFlags().StringP("authtoken", "a", "", "authorisation token to access organisation")
 	rootCmd.PersistentFlags().StringP("endpoint", "e", "", "URL of the API endpoint for your GitHub instance")
-	rootCmd.PersistentFlags().StringP("useragent", "ua", "GitHub CLI Agent", "User-Agent to use for requests to your GitHub instance")
+	rootCmd.PersistentFlags().String("useragent", "GitHub CLI Agent", "User-Agent to use for requests to your GitHub instance")
 
 	err := viper.BindPFlag("organisation", rootCmd.PersistentFlags().Lookup("organisation")); if err != nil { log.Fatal(err) }
 	err = viper.BindPFlag("authtoken", rootCmd.PersistentFlags().Lookup("authtoken")); if err != nil { log.Fatal(err) }
