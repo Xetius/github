@@ -5,7 +5,7 @@ GOCLEAN=$(GOCMD) clean
 GODEP=dep
 BINARY_NAME=github
 
-all: test build
+all: clean dep test build
 
 build:
 	$(GOBUILD) -o $(BINARY_NAME) -v
@@ -16,3 +16,6 @@ test:
 clean:
 	$(GOCLEAN)
 	rm -f $(BINARY_NAME)
+
+dep:
+	$(GODEP) ensure
